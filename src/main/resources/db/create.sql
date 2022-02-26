@@ -14,6 +14,6 @@ squadid int
 CREATE TABLE IF NOT EXISTS squad(
 id int PRIMARY KEY auto_increment,
 name varchar,
-max_size int,
+maxsize int,
 cause varchar,
 );
