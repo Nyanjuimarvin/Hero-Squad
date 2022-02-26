@@ -1,23 +1,29 @@
 package Models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Hero {
     private int age;
     private int id;
+    private int squadId;
     private String name;
     private String power;
     private String move;
     private String weapon;
     private String weakness;
 
-    public  Hero(int age,String name,String power,String move,String weapon,String weakness){
+    private static List <Hero> instances = new ArrayList<>();
+
+    public  Hero(int age,String name,String power,String move,String weapon,String weakness,int squadId){
         this.age = age;
         this.name = name;
         this.power = power;
         this.move = move;
         this.weapon = weapon;
         this.weakness = weakness;
+        this.squadId = squadId;
     }
 
     @Override
@@ -68,6 +74,10 @@ public class Hero {
 
     public String getWeakness() {
         return weakness;
+    }
+
+    public int getSquadId() {
+        return squadId;
     }
 }
 

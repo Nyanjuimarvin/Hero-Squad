@@ -8,7 +8,7 @@ class HeroTest {
 
     Hero hero;
     public Hero setUpHero(){
-        return new Hero(28,"Doom Slayer","Infinite Stamina","Glory Kill","Super Shotgun","None");
+        return new Hero(28,"Doom Slayer","Infinite Stamina","Glory Kill","Super Shotgun","None",1);
     }
 
     @Test
@@ -26,5 +26,6 @@ class HeroTest {
         assertEquals("Glory Kill",hero.getMove());
         assertEquals("Super Shotgun",hero.getWeapon());
         assertEquals("None",hero.getWeakness());
+        assertEquals(1,hero.getSquadId());
     }
 }
