@@ -1,7 +1,5 @@
 package Models;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,13 +12,13 @@ class HeroTest {
     }
 
     @Test
-    public void HeroObjectsAreInstantiated(){
+    public void HeroObjectsAreInstantiated() throws Exception{
         hero = setUpHero();
         assertTrue( hero instanceof Hero);
     }
 
     @Test
-    public void HeroObjectInstantiatesCorrectly(){
+    public void HeroObjectInstantiatesCorrectly() throws Exception{
         hero = setUpHero();
         assertEquals(28,hero.getAge());
         assertEquals("Doom Slayer",hero.getName());
