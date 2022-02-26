@@ -4,11 +4,11 @@ CREATE TABLE IF NOT EXISTS hero(
 id int PRIMARY KEY auto_increment,
 age int,
 name varchar,
-special_power varchar,
-special_move varchar,
-preferred_weapon varchar,
+power varchar,
+move varchar,
+weapon varchar,
 weakness varchar,
-squad_id int,
+squadid int
 );
 
 CREATE TABLE IF NOT EXISTS squad(

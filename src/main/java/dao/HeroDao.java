@@ -1,7 +1,8 @@
 package dao;
 
-import Models.Hero;
+import Models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface HeroDao {
@@ -14,7 +15,7 @@ public interface HeroDao {
     void addHero(Hero hero);
     Hero findById(int id);
 
-    void UpdateHero(int id, int age,String name,String power,String move,String weapon,String weakness,int SquadId);
+    void updateHero(int id, int age,String name,String power,String move,String weapon,String weakness,int SquadId);
     //Delete one
     void deleteById(int id);
 

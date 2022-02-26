@@ -1,6 +1,6 @@
-package dao;
-
-
-public class Sql2oSquadDao implements SquadDao{
-
-}
+//package dao;
+//
+//
+//public class Sql2oSquadDao implements SquadDao{
+//
+//}

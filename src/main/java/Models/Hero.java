@@ -14,8 +14,6 @@ public class Hero {
     private String weapon;
     private String weakness;
 
-    private static List <Hero> instances = new ArrayList<>();
-
     public  Hero(int age,String name,String power,String move,String weapon,String weakness,int squadId){
         this.age = age;
         this.name = name;
@@ -31,17 +29,19 @@ public class Hero {
         if (this == o) return true;
         if ( !(o instanceof Hero) ) return false;
         Hero hero = (Hero) o;
-        return age == hero.age && id == hero.id
-                && Objects.equals(name, hero.name)
-                && Objects.equals(power, hero.power)
-                && Objects.equals(move, hero.move)
-                && Objects.equals(weapon, hero.weapon)
-                && Objects.equals(weakness, hero.weakness);
+        return age== hero.getAge() && id == hero.getId()
+                && squadId == hero.getSquadId()
+                && Objects.equals(name, hero.getName())
+                && Objects.equals(power, hero.getPower())
+                && Objects.equals(move, hero.getMove())
+                && Objects.equals(weapon, hero.getWeapon())
+                && Objects.equals(weakness, hero.getWeakness())
+        ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(age, id, name, power, move, weapon, weakness);
+        return Objects.hash(age, name, power, move, weapon, weakness, id);
     }
 
     public void setId(int id) {

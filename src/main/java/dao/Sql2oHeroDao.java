@@ -1,6 +1,6 @@
 package dao;
 
-import Models.*;
+import Models.Hero;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -17,8 +17,8 @@ public class Sql2oHeroDao implements HeroDao{
 
     @Override
     public void addHero(Hero hero){
-        String sql = "INSERT INTO  hero( age, name, power, move, weapon, weakness, squadId) " +
-                "VALUES(:age,:name,:power,:move,:weapon,:weakness,:squadId)";
+        String sql = "INSERT INTO hero( age, name, power, move, weapon, weakness, squadid) " +
+                "VALUES( :age,:name,:power,:move,:weapon,:weakness,:squadId)";
 
         //open connection
         try( Connection conn = sql2o.open() ){
@@ -36,9 +36,10 @@ public class Sql2oHeroDao implements HeroDao{
 
     //List of all heroes
     @Override
-    public List <Hero>getAllHeroes(){
+    public List <Hero> getAllHeroes(){
         try( Connection conn = sql2o.open() ){
           return conn.createQuery("SELECT * FROM hero")
+                  .throwOnMappingFailure(false)//Eliminate Mapping to property Error
                     .executeAndFetch(Hero.class);//Fetch Hero List
         }
     }
@@ -47,26 +48,28 @@ public class Sql2oHeroDao implements HeroDao{
     @Override
     public Hero findById(int id){
         try( Connection conn = sql2o.open() ){
-            return conn.createQuery("SELECT * WHERE id = :id ")
+            return conn.createQuery("SELECT * FROM hero WHERE id = :id")
                     .addParameter("id",id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetchFirst(Hero.class);
         }
     }
 
     @Override
-    public void UpdateHero( int id, int age, String name, String power, String move, String weapon, String weakness,int squadId) {
-        String sql = "UPDATE hero SET (age,name,power,move,weapon,weakness,squad_id) = (:age,:name,:power,:move,:weapon,:weakness,:squadId) " +
+    public void updateHero( int id, int age, String name, String power, String move, String weapon, String weakness,int squadId) {
+        String sql = "UPDATE hero SET ( age,name,power,move,weapon,weakness,squadid) = (:age,:name,:power,:move,:weapon,:weakness,:squadId) " +
                 "WHERE id = :id";
 
         try( Connection conn = sql2o.open() ){
             conn.createQuery(sql)
+                    .addParameter("id",id)
                     .addParameter("age",age)
                     .addParameter("name",name)
                     .addParameter("power",power)
                     .addParameter("move",move)
                     .addParameter("weapon",weapon)
                     .addParameter("weakness",weakness)
-                    .addParameter("squad_id",squadId)
+                    .addParameter("squadid",squadId)
                     .executeUpdate();
         }catch(Sql2oException ex){
             System.out.println(ex);
