@@ -8,7 +8,7 @@ import java.util.List;
 public interface SquadDao {
 
     //List of all Squads
-    List<Squad> getAll();
+    List<Squad> getAllHeroes();
     List <Hero> allHeroesInASquad (int squadId);
 
     //CRUD

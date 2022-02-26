@@ -5,6 +5,8 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.List;
+
 public class Sql2oHeroDao implements HeroDao{
 
 
@@ -27,6 +29,67 @@ public class Sql2oHeroDao implements HeroDao{
                     .executeUpdate()
                     .getKey();
             hero.setId(id);
+        }catch(Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    //List of all heroes
+    @Override
+    public List <Hero>getAllHeroes(){
+        try( Connection conn = sql2o.open() ){
+          return conn.createQuery("SELECT * FROM hero")
+                    .executeAndFetch(Hero.class);//Fetch Hero List
+        }
+    }
+
+    //Hero at specific id
+    @Override
+    public Hero findById(int id){
+        try( Connection conn = sql2o.open() ){
+            return conn.createQuery("SELECT * WHERE id = :id ")
+                    .addParameter("id",id)
+                    .executeAndFetchFirst(Hero.class);
+        }
+    }
+
+    @Override
+    public void UpdateHero( int id, int age, String name, String power, String move, String weapon, String weakness,int squadId) {
+        String sql = "UPDATE hero SET (age,name,power,move,weapon,weakness,squad_id) = (:age,:name,:power,:move,:weapon,:weakness,:squadId) " +
+                "WHERE id = :id";
+
+        try( Connection conn = sql2o.open() ){
+            conn.createQuery(sql)
+                    .addParameter("age",age)
+                    .addParameter("name",name)
+                    .addParameter("power",power)
+                    .addParameter("move",move)
+                    .addParameter("weapon",weapon)
+                    .addParameter("weakness",weakness)
+                    .addParameter("squad_id",squadId)
+                    .executeUpdate();
+        }catch(Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void deleteById(int id) {
+        try( Connection conn = sql2o.open() ){
+            conn.createQuery("DELETE FROM hero WHERE id = :id")
+                    .addParameter("id",id)
+                    .executeUpdate();
+        }catch(Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+
+        try( Connection conn = sql2o.open() ){
+            conn.createQuery("DELETE FROM hero")
+                    .executeUpdate();
         }catch(Sql2oException ex){
             System.out.println(ex);
         }

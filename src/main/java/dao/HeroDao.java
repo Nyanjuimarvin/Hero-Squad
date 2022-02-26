@@ -10,9 +10,11 @@ public interface HeroDao {
 
 
     //CRUD
+
     void addHero(Hero hero);
     Hero findById(int id);
-    void UpdateHero(int id,int age,String name,String power,String move,String weapon,String weakness);
+
+    void UpdateHero(int id, int age,String name,String power,String move,String weapon,String weakness,int SquadId);
     //Delete one
     void deleteById(int id);
 
