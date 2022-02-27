@@ -1,0 +1,55 @@
+{{#partial "content"}}
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="">
+            </form>
+            <form action="/heroes" method="post">
+                {{#if squads}}
+                    <div class="form-group mb-4">
+                        <label for="name" class="fs-5 mb-2">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="author" class="fs-5 mb-2">Age:</label>
+                        <input type="number" class="form-control" id="age" name="age">
+                   </div>
+                    <div class="form-group mb-4">
+
+                        <label for="name" class="fs-5 mb-2">Power:</label>
+                        <input type="text" class="form-control" id="power" name="power">
+                     </div>
+                    <div class="form-group mb-4">
+
+                        <label for="name" class="fs-5 mb-2">Move:</label>
+                        <input type="text" class="form-control" id="move" name="move">
+                    </div>
+                    <div class="form-group mb-4">
+
+                        <label for="name" class="fs-5 mb-2">Weapon:</label>
+                        <input type="text" class="form-control" id="weapon" name="weapon">
+                    </div>
+                    <div class="form-group mb-4">
+
+                        <label for="description" class="fs-5 mb-2">Weakness:</label>
+                        <textarea class="form-control" id="description" rows="4" name="quote"></textarea>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="">Squad</label>
+                        <select name="squadId" id="squadId">
+                            {{#each squad}}
+                                <option value=""></option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <button class="btn btn-outline-warning d-block mx-auto" type="submit">Add Hero</button>
+                {{else}}
+                    <p>Add a Squad To continue<a href="/squad/new">Add</a></p>
+                {{/if}}
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
