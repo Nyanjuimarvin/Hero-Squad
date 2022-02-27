@@ -17,7 +17,7 @@ public class Sql2oSquadDao implements SquadDao{
 
     @Override
     public void addSquad(Squad squad) {
-        String sql = "INSERT INTO squad(name,maxsize,cause) VALUES (name,size,cause)";
+        String sql = "INSERT INTO squad(name,maxsize,cause) VALUES (:name,:maxSize,:cause)";
         try( Connection conn = sql2o.open() ){
             int id = (int)conn.createQuery(sql,true)
                     .bind(squad)
@@ -43,6 +43,7 @@ public class Sql2oSquadDao implements SquadDao{
     public Squad findById(int id) {
         try( Connection conn = sql2o.open() ){
             return conn.createQuery("SELECT * FROM squad WHERE id = :id")
+                    .addParameter("id",id)
                     .executeAndFetchFirst(Squad.class);
         }
     }
@@ -58,8 +59,8 @@ public class Sql2oSquadDao implements SquadDao{
     }
 
     @Override
-    public void updateSquad(int id, int size, int name, String cause) {
-        String sql = "UPDATE squad SET (name,maxsize,cause) = (name,size,cause) WHERE id = :id";
+    public void updateSquad(int id, int size, String name, String cause) {
+        String sql = "UPDATE squad SET (name,maxsize,cause) = (:name,:size,:cause) WHERE id = :id";
 
         try( Connection conn = sql2o.open() ){
             conn.createQuery(sql)
