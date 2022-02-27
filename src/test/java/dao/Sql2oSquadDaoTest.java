@@ -1,5 +1,6 @@
 package dao;
 
+import Models.Hero;
 import Models.Squad;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ class Sql2oSquadDaoTest {
 
     private Connection conn;
     private Sql2oSquadDao squadDao;
+    private Sql2oHeroDao heroDao;
 
     //Helper Squad
     public Squad setUpSquad(){
@@ -24,6 +26,7 @@ class Sql2oSquadDaoTest {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString,"","");
         squadDao = new Sql2oSquadDao(sql2o);
+        heroDao = new Sql2oHeroDao(sql2o);
         conn = sql2o.open();
     }
 
@@ -33,7 +36,7 @@ class Sql2oSquadDaoTest {
     }
 
     @Test
-    void squadIsAddedWithId() {
+    void squadIsAddedWithId() throws Exception{
         Squad squad = setUpSquad();
         int initialId = squad.getId();
         squadDao.addSquad(squad);
@@ -41,7 +44,7 @@ class Sql2oSquadDaoTest {
     }
 
     @Test
-    void AllSquadsAreAddedInList() {
+    void AllSquadsAreAddedInList() throws Exception {
         Squad squad1 = setUpSquad();
         squadDao.addSquad(squad1);
         Squad squad2 = new Squad(3500,"Sentinels","Run Hell Over");
@@ -51,7 +54,7 @@ class Sql2oSquadDaoTest {
     }
 
     @Test
-    void squadsAreFoundById() {
+    void squadsAreFoundById() throws Exception {
         Squad squad = setUpSquad();
         squadDao.addSquad(squad);
         Squad newSquad = squadDao.findById(squad.getId());
@@ -59,24 +62,48 @@ class Sql2oSquadDaoTest {
     }
 
     @Test
-    void allHeroesInASquad() {
+    void HeroesInAGivenSquadAreFound() throws Exception {
+        Squad squad = setUpSquad();
+        squadDao.addSquad(squad);
+        int squadId = squad.getId();
+        Hero hero = new Hero(29,"The Courier","Super Strength","Khan Trick","Couriers Stash","Amnesia",squadId);
+        Hero hero1 = new Hero(27,"Gordon Freeman","Intellect","Tau Jump","Zero Point Energy Field Manipulator","Alyx Vance",squadId);
+        Hero hero2 = new Hero(22,"Benimaru Shinmon","Compound Pyrokinetic","Lai Hand Sword","Matoi","None",squadId);
+        heroDao.addHero(hero);
+        heroDao.addHero(hero1);
+        assertEquals(2,squadDao.allHeroesInASquad(squadId).size());
+        assertTrue(squadDao.allHeroesInASquad(squadId).contains(hero));
+        assertTrue(squadDao.allHeroesInASquad(squadId).contains(hero1));
+        assertFalse(squadDao.allHeroesInASquad(squadId).contains(hero2));
     }
 
     @Test
-    void updateSquad() {
+    void squadInGivenIdIsUpdated() throws Exception {
         Squad squad = setUpSquad();
         String initialName = squad.getName();
         int initialSize = squad.getMaxSize();
         String initialCause = squad.getCause();
         squadDao.addSquad(squad);
         squadDao.updateSquad(squad.getId(),6,"Squadra Guardie del corpo","Find the Boss");
-        assertNotEquals(initialName,squad.getName());
-        assertNotEquals(initialSize,squad.getMaxSize());
-        assertNotEquals(initialCause, squad.getCause());
+        assertNotEquals(initialName,squadDao.findById(squad.getId()).getName());
+        assertNotEquals(initialSize,squadDao.findById(squad.getId()).getMaxSize());
+        assertNotEquals(initialCause, squadDao.findById(squad.getId()).getCause());
     }
 
     @Test
-    void deleteAllSquads() {
+    public void SquadsAreDeletedById(){
+       Squad squad = setUpSquad();
+       Squad squad1 = new Squad(19,"Dark Brotherhood","Contractors");
+       squadDao.addSquad(squad);
+       squadDao.addSquad(squad1);
+
+       squadDao.deleteById(squad1.getId());
+       assertFalse(squadDao.getAllSquads().contains(squad1));
+
+    }
+
+    @Test
+    void allSquadsAreDeleted() throws Exception {
         Squad squad = setUpSquad();
         squadDao.addSquad(squad);
         Squad squad1 = new Squad(9,"The Patriots","Rule the Country");

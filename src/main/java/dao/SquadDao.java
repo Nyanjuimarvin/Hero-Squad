@@ -19,5 +19,6 @@ public interface SquadDao {
 
     void updateSquad(int id,int size,String name,String cause);
 
+    void deleteById(int id);
     void deleteAllSquads();
 }
