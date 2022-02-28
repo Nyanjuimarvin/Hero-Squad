@@ -46,7 +46,7 @@ public class App {
         },new HandlebarsTemplateEngine());
 
 
-        //Post Squad Form
+        //Post Squad Form ::CREATE
         post("/squads",(request, response) -> {
 //            Map <String,Object> model = new HashMap<>();
             String name = request.queryParams("name");
@@ -57,7 +57,7 @@ public class App {
             return null;
         },new HandlebarsTemplateEngine());
 
-        //Post Hero Form
+        //Post Hero Form ::CREATE
         post("/heroes",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             String name = request.queryParams("name");
@@ -68,33 +68,80 @@ public class App {
             String weakness = request.queryParams("weakness");
             int squadId = Integer.parseInt(request.queryParams("squadId"));
             heroDao.addHero(new Hero(age,name,power,move,weapon,weakness,squadId));
-            System.out.println(heroDao.getAllHeroes().size());
             response.redirect("/");
             return null;
         },new HandlebarsTemplateEngine());
 
-        //Heroes In a specific Squad
+        //Heroes In a specific Squad ::READ
         get("/squads/:id",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             int squadId = Integer.parseInt( request.params("id"));
             model.put("squad",squadDao.findById(squadId));
             model.put("heroes",squadDao.allHeroesInASquad(squadId));
-            System.out.println(squadDao.allHeroesInASquad(squadId).size());
+            model.put("squads",squadDao.getAllSquads());//Refresh for Dropdown
             return new ModelAndView(model,"squad.hbs");
 
         },new HandlebarsTemplateEngine());
 
-        //Hero details In A given Squad
+        //Hero details In A given Squad ::READ
         get("/squads/:squadId/heroes/:heroId",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             int squadId = Integer.parseInt(request.params("squadId"));
             int heroId = Integer.parseInt(request.params("heroId"));
-            System.out.println(squadId);
-            System.out.println(heroId);
             model.put("heroes",heroDao.findById(heroId));
-            System.out.println(heroDao.findById(heroId));
             return new ModelAndView(model,"hero.hbs");
         },new HandlebarsTemplateEngine());
 
+        //Get Form For Squad Updates
+        get("/squads/:squadId/update",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            model.put("edit",true);//Boolean for update:: Always true
+            int squadToEdit = Integer.parseInt(request.params("squadId"));
+            model.put("squad",squadDao.findById(squadToEdit));//Show previous in input fields
+            model.put("squads",squadDao.getAllSquads());
+            return new ModelAndView(model,"squad-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //Update Squad ::UPDATE
+        post("/squad/:squadId",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int idOfSquad = Integer.parseInt(request.params("squadId"));
+            String newName = request.queryParams("newname");
+            int newSize = Integer.parseInt(request.queryParams("newsize"));
+            String newCause = request.queryParams("newcause");
+            squadDao.updateSquad(idOfSquad,newSize,newName,newCause);
+
+            response.redirect("/");
+            return null;
+        },new HandlebarsTemplateEngine());
+
+        //Get form for hero updates
+
+        get("/hero/:heroId/update",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            model.put("update",true);
+            int heroToUpdate = Integer.parseInt(request.params("heroId"));
+            System.out.println(heroToUpdate);
+            model.put("hero",heroDao.findById(heroToUpdate));
+            model.put("squad",squadDao.getAllSquads());
+            return new ModelAndView(model,"hero-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //Update Hero ::UPDATE
+
+        post("/heroes/:heroId",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int heroId = Integer.parseInt(request.params("heroId"));
+            String newName = request.queryParams("newname");
+            int newAge = Integer.parseInt(request.queryParams("newage"));
+            String newPower = request.queryParams("newpower");
+            String newMove = request.queryParams("newmove");
+            String newWeapon = request.queryParams("newweapon");
+            String newWeakness = request.queryParams("newweakness");
+            int squadId = Integer.parseInt(request.queryParams("squadid"));
+            heroDao.updateHero(heroId,newAge,newName,newPower,newMove,newWeapon,newWeakness,squadId);
+            response.redirect("/");
+            return null;
+        });
     }
 }
