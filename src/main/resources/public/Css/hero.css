@@ -9,9 +9,23 @@ format("woff2"), url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab
 *{
     font-family:Arnold Regular;
 }
+
+
+.topprof{
+    display:flex;
+    flex-direction:row;
+}
+.profile{
+    height:90px;
+    width:90px;
+}
 .stat{
     height:40px;
     width:40px;
+}
+
+.name{
+    color:#fec92c;
 }
 .top{
     height:120px;
@@ -46,14 +60,67 @@ format("woff2"), url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab
     color:#ffff;
     background-color:#172b4d;
 }
+
+.btn1:hover{
+    color:#696969;
+    transform:translateY(-5px);
+}
+
+.btn2:hover{
+    color:#FFDEAD;
+    transform:translateY(-5px);
+}
+
 .herocard{
-    margin-top:100px;
+    margin-top:40px;
     background-color:#FFFAF0;
     border-radius:10px;
 }
 
 .herobody{
     background-image:url(/images/herobck.png);
+    height:100%;
     background-size:cover;
+    background-repeat:no-repeat;
     padding-bottom:190px;
+}
+.homebody{
+    background-image:url(/images/bck1.png);
+    height:100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+    padding-bottom:400px;
+    overflow:hidden;
+}
+
+.herorow{
+    background-image:url(/images/bck1.png);
+    height:100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+    padding-bottom:200px;
+    overflow:hidden;
+}
+.squadrow{
+    background-image:url(/images/bck2.png);
+    height:100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    padding-bottom:400px;
+}
+
+.squad-form{
+    background-image:url(/images/bck2.png);
+    height:100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    padding-bottom:400px;
+}
+
+.forms{
+    background-color:#F5F5F5;
+    border-radius:10px;
+    padding:30px;
 }

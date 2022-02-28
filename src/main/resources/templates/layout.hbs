@@ -6,14 +6,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Css/hero.css">
     <link rel="stylesheet" href="/Css/squad.css">
-<!--    <style type="text/css">-->
-<!--        .welcome{-->
-<!--        background-image:url(/images/hero.jpg);-->
-<!--        background-size:cover;-->
-<!--        height:700px;-->
-<!--        background-repeat:no-repeat;-->
-<!--        }-->
-<!--    </style>-->
 </head>
 
 <body>
@@ -31,8 +23,6 @@
                 {{#each squads}}
                     <li><a href="/squads/{{id}}">{{name}}</a></li>
                 {{/each}}
-            {{else}}
-                <li><a href="/squad/new">Add Squad</a></li>
             {{/if}}
             <li><a href="/squad/new">Add Squad</a></li>
         </ul>

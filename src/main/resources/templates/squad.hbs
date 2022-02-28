@@ -1,15 +1,24 @@
 {{#partial "content"}}
-        <h3>{{squad.name}}</h3>
-        <h6>Heroes in this squad</h6>
-        <ul>
-        {{#each heroes}}
-        <li>
-                <p>{{name}}</p>
-            <a href="/squads/{{squad.id}}/heroes/{{id}}">Details</a>
+    <div class="row squadrow">
+        <h2 class="text-center mt-2 text-white fs-1 fw-bolder text-decoration-underline">{{squad.name}}</h2>
+        <h3>Squad Size : {{squad.maxSize}}</h3>
+        <h3>Squad Cause: {{squad.cause}}</h3>
+        <h3 class="ms-5 text-center fw-bolder text-decoration-underline">Heroes in this squad</h3>
+        <div class="row row-cols-1 row-cols-md-3 p-5">
+            {{#each heroes}}
+                <div class="col">
+                    <div class="card mx-auto herocard p-3">
 
-        {{/each}}
-        </li>
-        </ul>
-        <a href="/squads/{{squad.id}}/heroes/delete">Remove all heroes from squad</a>
+                        <div class="topprof">
+                            <img class="rounded-circle profile me-4" src="/images/herop.png" alt="">
+                            <h3 class="fw-bolder heroname text-center ms-5">{{name}}</h3>
+                        </div>
+                        <a class="text-decoration-none" href="/squads/{{squad.id}}/heroes/{{id}}"><button class="btn btn1 d-block mx-auto ">details</button></a>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+    </div>
 {{/partial}}
 {{> layout.hbs}}

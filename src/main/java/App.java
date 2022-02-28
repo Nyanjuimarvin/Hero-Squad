@@ -163,23 +163,12 @@ public class App {
             return null;
         },new HandlebarsTemplateEngine());
 
-        //Delete All Heroes In A squad
-        get("/squad/:squadId/heroes/delete",(request, response) -> {
-            Map <String,Object> model = new HashMap<>();
-            int squadId = Integer.parseInt(request.params("squadId"));
-            List <Hero> allHeroes =  squadDao.allHeroesInASquad(squadId);
-            allHeroes.clear();
-
-            return null;
-        },new HandlebarsTemplateEngine());
-
         //Delete Heroes At A given Id
-        get("/squads/:squadId/heroes/:heroId",(request, response) -> {
+        get("/heroes/:heroId/delete",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
-            int squadId = Integer.parseInt(request.params("squadId"));
             int heroId = Integer.parseInt(request.params("heroId"));
             heroDao.deleteById(heroId);
-            response.redirect("/squads/:squadId");
+            response.redirect("/");
             return null;
         },new HandlebarsTemplateEngine());
     }

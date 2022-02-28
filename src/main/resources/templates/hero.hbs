@@ -1,45 +1,44 @@
 {{#partial "content"}}
-    <div class="row herobody">
-    <h3>Key</h3>
+    <div class="row herobody pt-5">
     <div class="mb-5 text-center">
         <img class="img-fluid stat" src="/images/power.png" alt="">
-        <span>Special Power</span>
+        <span class="fs-3 fw-bold">Special Power</span>
         <img class="img-fluid stat" src="/images/move.png" alt="">
-        <span>Special Move</span>
+        <span class="fs-3 fw-bold">Special Move</span>
         <img class="img-fluid stat" src="/images/weapon.png" alt="">
-        <span>Weapon</span>
+        <span class="fs-3 fw-bold">Weapon</span>
         <img class="img-fluid stat" src="/images/weakness.png" alt="">
-        <span>Weakness</span>
+        <span class="fs-3 fw-bold">Weakness</span>
     </div>
 <!--    Hero at certain id details-->
     <div class="row row-cols-1 row-cols-md-3">
         <div class="col mx-auto">
-            <div class="card h-100 mx-auto herocard">
+            <div class="card mx-auto herocard">
                 <div class="top">
                     <img class="rounded-circle" src="/images/herop.png" alt="">
                 </div>
                 <h3 class="fw-bolder name text-center">{{heroes.name}} ({{heroes.age}})</h3>
                 <h4 class="text-center">Stats</h4>
-                <div class="mb-2 ms-5 ">
-                    <img class="img-fluid stat" src="/images/power.png" alt="">
-                    <span>{{heroes.power}}</span>
+                <div class="mb-3 ms-5 ">
+                    <img class="img-fluid stat me-3" src="/images/power.png" alt="">
+                    <span class="fw-bold">{{heroes.power}}</span>
                 </div>
-                <div class="mb-2 ms-5">
-                    <img class="img-fluid stat" src="/images/move.png" alt="">
+                <div class="mb-3 ms-5">
+                    <img class="img-fluid stat me-3" src="/images/move.png" alt="">
                     <span>{{heroes.move}}</span>
                 </div>
-                <div class="mb-2 ms-5">
-                    <img class="img-fluid stat" src="/images/weapon.png" alt="">
+                <div class="mb-3 ms-5">
+                    <img class="img-fluid stat me-3" src="/images/weapon.png" alt="">
                     <span>{{heroes.weapon}}</span>
                 </div>
-                <div class="mb-2 ms-5">
-                    <img class="img-fluid stat" src="/images/weakness.png" alt="">
+                <div class="mb-3 ms-5">
+                    <img class="img-fluid stat me-3" src="/images/weakness.png" alt="">
                     <span>{{heroes.weakness}}</span>
                 </div>
 
                 <div class="buttons p-4">
                     <a href="/hero/{{heroes.id}}/update"><button class="btn btn1 ">update</button></a>
-                    <button class="btn btn2">delete</button>
+                    <a href="/heroes/{{heroes.id}}/delete"><button class="btn btn2">delete</button></a>
                 </div>
             </div>
         </div>

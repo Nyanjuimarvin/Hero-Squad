@@ -1,47 +1,46 @@
 {{#partial "content"}}
-
-    <div class="row">
+    <div class="row squad-form pt-5">
         <div class="col-md-4"></div>
     {{#if edit}}
-        <div class="col-md-4">
+        <div class="col-md-4 forms mt-5">
             <form action="/squad/{{squad.id}}" method="post">
                 <div class="form-group mb-4">
-                    <label for="name" class="fs-5 mb-2">Name:</label>
+                    <label for="name" class="fs-4 mb-2">Name:</label>
                     <input type="text" class="form-control" id="newname" name="newname" value="{{squad.name}}">
                 </div>
                 <div class="form-group mb-4">
-                    <label for="maxSize" class="fs-5 mb-2">Squad Size:</label>
+                    <label for="maxSize" class="fs-4 mb-2">Squad Size:</label>
                     <input type="number" class="form-control" id="newsize" name="newsize" value="{{squad.maxSize}}">
                 </div>
                 <div class="form-group mb-4">
 
-                    <label for="cause" class="fs-5 mb-2">Cause:</label>
+                    <label for="cause" class="fs-4 mb-2">Cause:</label>
                     <input type="text" class="form-control" id="newcause" name="newcause" value="{{squad.cause}}">
                 </div>
 
-                <button class="btn btn-outline-warning d-block mx-auto" type="submit">Update Squad</button>
+                <button class="btn btn-warning d-block mx-auto" type="submit">Update Squad</button>
             </form>
         </div>
 
     {{else}}
 
-        <div class="col-md-4">
+        <div class="col-md-4 forms mt-5">
             <form action="/squads" method="post">
                     <div class="form-group mb-4">
-                        <label for="name" class="fs-5 mb-2">Name:</label>
+                        <label for="name" class="fs-4 mb-2">Name:</label>
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group mb-4">
-                        <label for="maxSize" class="fs-5 mb-2">Squad Size:</label>
+                        <label for="maxSize" class="fs-4 mb-2">Squad Size:</label>
                         <input type="number" class="form-control" id="size" name="size">
                     </div>
                     <div class="form-group mb-4">
 
-                        <label for="cause" class="fs-5 mb-2">Cause:</label>
+                        <label for="cause" class="fs-4 mb-2">Cause:</label>
                         <input type="text" class="form-control" id="cause" name="cause">
                     </div>
 
-                    <button class="btn btn-outline-warning d-block mx-auto" type="submit">Add Squad</button>
+                    <button class="btn btn-warning d-block mx-auto" type="submit">Add Squad</button>
             </form>
         </div>
         <div class="col-md-4"></div>
