@@ -6,19 +6,22 @@
 
            {{#each squads}}
                <div class="col">
-                   <div class="card h-100">
-                       <p class="fw-bolder">{{name}}</p>
-                       <p>{{maxSize}}</p>
+                   <div class="card h-100 squaddisp p-3">
+                       <div class="topsquad p-3">
+                           <img class="rounded-circle me-5" src="/images/squad.png" alt="">
+                           <span class="fw-bolder fs-1 ms-5">{{name}}</span>
+                       </div>
+                       <p>Size {{maxSize}}</p>
                        <a href="/squads/{{id}}">Details</a>
                        <a href="/squads/{{id}}/update">Update</a>
                        <a href="/squads/{{id}}/delete">delete</a>
                    </div>
                </div>
            {{/each}}
-               <a href="/squad/delete">Delete all</a>
            {{else}}
                    <p>No squads Yet <a href="/squad/new">Add Squad Here...</a></p>
     {{/if}}
        </div>
+    <a href="/squad/delete">Delete all</a>
 {{/partial}}
 {{>layout.hbs}}

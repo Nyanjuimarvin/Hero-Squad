@@ -89,6 +89,7 @@ public class App {
             int squadId = Integer.parseInt(request.params("squadId"));
             int heroId = Integer.parseInt(request.params("heroId"));
             model.put("heroes",heroDao.findById(heroId));
+            model.put("squads",squadDao.getAllSquads());
             return new ModelAndView(model,"hero.hbs");
         },new HandlebarsTemplateEngine());
 

@@ -1,3 +1,14 @@
+@font-face {font-family: "Arnold Regular";
+ src: url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab.eot");
+ src: url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab.eot?#iefix")
+format("embedded-opentype"), url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab.woff2")
+format("woff2"), url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab.woff")
+ format("woff"), url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab.ttf")
+ format("truetype"), url("//db.onlinewebfonts.com/t/f796adbcb3e0463184ab45c5afc332ab.svg#Arnold Regular") format("svg"); }
+
+*{
+    font-family:Arnold Regular;
+}
 .stat{
     height:40px;
     width:40px;
@@ -35,4 +46,14 @@
     color:#ffff;
     background-color:#172b4d;
 }
+.herocard{
+    margin-top:100px;
+    background-color:#FFFAF0;
+    border-radius:10px;
+}
 
+.herobody{
+    background-image:url(/images/herobck.png);
+    background-size:cover;
+    padding-bottom:190px;
+}

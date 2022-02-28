@@ -1,6 +1,7 @@
 {{#partial "content"}}
+    <div class="row herobody">
     <h3>Key</h3>
-    <div>
+    <div class="mb-5 text-center">
         <img class="img-fluid stat" src="/images/power.png" alt="">
         <span>Special Power</span>
         <img class="img-fluid stat" src="/images/move.png" alt="">
@@ -12,8 +13,8 @@
     </div>
 <!--    Hero at certain id details-->
     <div class="row row-cols-1 row-cols-md-3">
-        <div class="col mt-5 mx-auto">
-            <div class="card h-100 mx-auto">
+        <div class="col mx-auto">
+            <div class="card h-100 mx-auto herocard">
                 <div class="top">
                     <img class="rounded-circle" src="/images/herop.png" alt="">
                 </div>
@@ -21,11 +22,11 @@
                 <h4 class="text-center">Stats</h4>
                 <div class="mb-2 ms-5 ">
                     <img class="img-fluid stat" src="/images/power.png" alt="">
-                    <span>Special Power:  {{heroes.power}}</span>
+                    <span>{{heroes.power}}</span>
                 </div>
                 <div class="mb-2 ms-5">
                     <img class="img-fluid stat" src="/images/move.png" alt="">
-                    <span> Special Move:  {{heroes.move}}</span>
+                    <span>{{heroes.move}}</span>
                 </div>
                 <div class="mb-2 ms-5">
                     <img class="img-fluid stat" src="/images/weapon.png" alt="">
@@ -42,6 +43,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 {{/partial}}
 {{> layout.hbs}}
