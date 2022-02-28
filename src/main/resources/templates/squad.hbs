@@ -1,3 +1,9 @@
 {{#partial "content"}}
+    {{#each squads}}
+        <h3>{{name}}</h3>
+        <p>{{size}}</p>
+        <p>{{cause}}</p>
+        <p>{{heroes}}</p>
+    {{/each}}
 {{/partial}}
 {{> layout.hbs}}

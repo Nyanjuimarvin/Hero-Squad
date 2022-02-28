@@ -1,15 +1,19 @@
 {{#partial "content"}}
        <div class="row row-cols-1 row-cols-md-2">
-           {{#each squad}}
+
+           {{#if squads}}
+
+           {{#each squads}}
                <div class="col">
                    <div class="card h-100">
                        <p class="fw-bolder">{{name}}</p>
-                       <p>{{size}}</p>
-                       <p>{{cause}}</p>
+                       <a href="/squad/{{id}}/heroes/{{id}}">Details</a>
                    </div>
                </div>
            {{/each}}
-
+           {{else}}
+                   <p>No squads Yet <a href="/squad/new">Add Squad Here...</a></p>
+    {{/if}}
        </div>
 {{/partial}}
-{{> layout.hbs}}
+{{>layout.hbs}}
