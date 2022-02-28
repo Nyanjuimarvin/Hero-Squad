@@ -143,5 +143,45 @@ public class App {
             response.redirect("/");
             return null;
         });
+        // Delete All Squads and Heroes :: DELETE
+        get("/squad/delete",(request, response) -> {
+            Map <String, Object> model = new HashMap<>();
+            heroDao.deleteAll();
+            squadDao.deleteAllSquads();
+            response.redirect("/");
+            return null;
+        },new HandlebarsTemplateEngine());
+
+        //Delete squad at given id
+        get("/squads/:squadId/delete",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int squadId = Integer.parseInt(request.params("squadId"));
+            squadDao.deleteById(squadId);
+            model.put("squads",squadDao.getAllSquads());
+            response.redirect("/");
+            return null;
+        },new HandlebarsTemplateEngine());
+
+        //Delete All Heroes In A squad
+        get("/squad/:squadId/heroes/delete",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int squadId = Integer.parseInt(request.params("squadId"));
+            List <Hero> allHeroes =  squadDao.allHeroesInASquad(squadId);
+            allHeroes.clear();
+
+            return null;
+        },new HandlebarsTemplateEngine());
+
+        //Delete Heroes At A given Id
+        get("/squads/:squadId/heroes/:heroId",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int squadId = Integer.parseInt(request.params("squadId"));
+            int heroId = Integer.parseInt(request.params("heroId"));
+            heroDao.deleteById(heroId);
+            response.redirect("/squads/:squadId");
+            return null;
+        },new HandlebarsTemplateEngine());
     }
+
+
 }

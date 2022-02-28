@@ -1,0 +1,38 @@
+.stat{
+    height:40px;
+    width:40px;
+}
+.top{
+    height:120px;
+    width:120px;
+    position:absolute;
+    border-radius:50%;
+    left:38%;
+    top: -60px;
+}
+
+.top img{
+    height:inherit;
+    width:inherit;
+}
+
+.name{
+    margin-top:70px;
+}
+
+.buttons{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+.btn1{
+    color:#ffff;
+    background-color:#11cdef;
+}
+
+.btn2{
+    color:#ffff;
+    background-color:#172b4d;
+}
+
