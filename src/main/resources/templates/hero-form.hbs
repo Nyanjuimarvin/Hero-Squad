@@ -32,13 +32,13 @@
                     <div class="form-group mb-4">
 
                         <label for="description" class="fs-5 mb-2">Weakness:</label>
-                        <textarea class="form-control" id="description" rows="4" name="quote"></textarea>
+                        <textarea class="form-control" id="weakness" rows="4" name="weakness"></textarea>
                     </div>
                     <div class="form-group mb-4">
-                        <label for="">Squad</label>
-                        <select name="squadId" id="squadId">
+                        <label for="">Squad:</label>
+                        <select name="squadId" class="form-control" id="squadId">
                             {{#each squads}}
-                                <option class="form-control" value="{{id}}">{{name}}</option>
+                                <option  value="{{id}}">{{name}}</option>
                             {{/each}}
                         </select>
                     </div>

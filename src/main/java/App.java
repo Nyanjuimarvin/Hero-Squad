@@ -52,11 +52,7 @@ public class App {
             String name = request.queryParams("name");
             int size = Integer.parseInt(request.queryParams("size"));
             String cause = request.queryParams("cause");
-            System.out.println(name);
-            System.out.println(size);
-            System.out.println(cause);
             squadDao.addSquad(new Squad(size,name,cause));
-            System.out.println(squadDao.getAllSquads().size());
             response.redirect("/");
             return null;
         },new HandlebarsTemplateEngine());
@@ -64,16 +60,27 @@ public class App {
         //Post Hero Form
         post("/heroes",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
-            String name = request.params("name");
-            int age = Integer.parseInt(request.params("age"));
-            String power = request.params("power");
-            String move = request.params("move");
-            String weapon = request.params("weapon");
-            String weakness = request.params("weakness");
-            int squadId = Integer.parseInt(request.params("squadId"));
+            String name = request.queryParams("name");
+            int age = Integer.parseInt(request.queryParams("age"));
+            String power = request.queryParams("power");
+            String move = request.queryParams("move");
+            String weapon = request.queryParams("weapon");
+            String weakness = request.queryParams("weakness");
+            int squadId = Integer.parseInt(request.queryParams("squadId"));
             heroDao.addHero(new Hero(age,name,power,move,weapon,weakness,squadId));
+            System.out.println(heroDao.getAllHeroes().size());
             response.redirect("/");
             return null;
+        },new HandlebarsTemplateEngine());
+
+        get("/squads/:id",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int squadId = Integer.parseInt( request.params("id"));
+            model.put("squad",squadDao.findById(squadId));
+            model.put("heroes",squadDao.allHeroesInASquad(squadId));
+            System.out.println(squadDao.allHeroesInASquad(squadId).size());
+            return new ModelAndView(model,"squad.hbs");
+
         },new HandlebarsTemplateEngine());
 
     }
