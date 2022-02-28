@@ -1,0 +1,5 @@
+CREATE DATABASE herosquad;
+\c herosquad;
+CREATE TABLE hero(id SERIAL PRIMARY KEY ,age INTEGER,name VARCHAR,power VARCHAR,move VARCHAR,weapon VARCHAR,weakness VARCHAR,squadid INTEGER);
+CREATE TABLE squad(id SERIAL PRIMARY KEY,name VARCHAR,maxsize INTEGER,cause VARCHAR);
+CREATE DATABASE herosquad_test WITH TEMPLATE herosquad;
