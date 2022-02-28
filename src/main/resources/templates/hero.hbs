@@ -1,17 +1,15 @@
 {{#partial "content"}}
 <!--    Hero at certain id details-->
     <div class="row row-cols-1 row-cols-md-2">
-        {{#each heroes}}
         <div class="col">
             <div class="card h-100">
-                <p class="fw-bolder">{{name}}</p>
-                <p>{{age}}</p>
-                <p>{{power}}</p>
-                <p>{{move}}</p>
-                <p>{{weakness}}</p>
+                <p class="fw-bolder">{{heroes.name}}</p>
+                <p>{{heroes.age}}</p>
+                <p>{{heroes.power}}</p>
+                <p>{{heroes.move}}</p>
+                <p>{{heroes.weakness}}</p>
             </div>
         </div>
-          {{/each}}
     </div>
 {{/partial}}
 {{> layout.hbs}}

@@ -73,6 +73,7 @@ public class App {
             return null;
         },new HandlebarsTemplateEngine());
 
+        //Heroes In a specific Squad
         get("/squads/:id",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             int squadId = Integer.parseInt( request.params("id"));
@@ -81,6 +82,18 @@ public class App {
             System.out.println(squadDao.allHeroesInASquad(squadId).size());
             return new ModelAndView(model,"squad.hbs");
 
+        },new HandlebarsTemplateEngine());
+
+        //Hero details In A given Squad
+        get("/squads/:squadId/heroes/:heroId",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int squadId = Integer.parseInt(request.params("squadId"));
+            int heroId = Integer.parseInt(request.params("heroId"));
+            System.out.println(squadId);
+            System.out.println(heroId);
+            model.put("heroes",heroDao.findById(heroId));
+            System.out.println(heroDao.findById(heroId));
+            return new ModelAndView(model,"hero.hbs");
         },new HandlebarsTemplateEngine());
 
     }
