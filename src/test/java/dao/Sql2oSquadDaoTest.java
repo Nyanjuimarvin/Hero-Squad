@@ -2,9 +2,7 @@ package dao;
 
 import Models.Hero;
 import Models.Squad;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -12,27 +10,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Sql2oSquadDaoTest {
 
-    private Connection conn;
-    private Sql2oSquadDao squadDao;
-    private Sql2oHeroDao heroDao;
+    private static Connection conn;
+    private static Sql2oSquadDao squadDao;
+    private static Sql2oHeroDao heroDao;
 
     //Helper Squad
     public Squad setUpSquad(){
         return new Squad(1000,"Diamond Dogs","Soldiers Without Borders");
     }
 
-    @BeforeEach
-    void setUp() {
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString,"","");
+    @BeforeAll
+    public static void setUp() {
+        String connectionString = "jdbc:postgresql://localhost:5432/herosquad_test";
+        Sql2o sql2o = new Sql2o(connectionString,"marvin","nrvnqsr13");
         squadDao = new Sql2oSquadDao(sql2o);
         heroDao = new Sql2oHeroDao(sql2o);
         conn = sql2o.open();
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
+        heroDao.deleteAll();
+        squadDao.deleteAllSquads();
+    }
+
+    @AfterAll
+    public static void shutdown() throws Exception{
         conn.close();
+        System.out.println("connection closed");
     }
 
     @Test

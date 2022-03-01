@@ -15,8 +15,8 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
-        String connectionString = "jdbc:h2:~/hero-squad.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString,"","");
+        String connectionString = "jdbc:postgresql://localhost:5432/herosquad";
+        Sql2o sql2o = new Sql2o(connectionString,"marvin","nrvnqsr13");
         Sql2oHeroDao heroDao = new Sql2oHeroDao(sql2o);
         Sql2oSquadDao squadDao = new Sql2oSquadDao(sql2o);
 
@@ -67,7 +67,11 @@ public class App {
             String weapon = request.queryParams("weapon");
             String weakness = request.queryParams("weakness");
             int squadId = Integer.parseInt(request.queryParams("squadId"));
-            heroDao.addHero(new Hero(age,name,power,move,weapon,weakness,squadId));
+            Hero newHero = new Hero(age,name,power,move,weapon,weakness,squadId);
+            while(!(squadDao.allHeroesInASquad(squadId).contains(newHero) ) && !(heroDao.getAllHeroes().contains(newHero))){
+                heroDao.addHero(newHero);
+            }
+
             response.redirect("/");
             return null;
         },new HandlebarsTemplateEngine());
