@@ -24,6 +24,9 @@ public class App {
         get("/",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             model.put("squads",squadDao.getAllSquads());
+            for(int i = 0 ; i <= squadDao.getAllSquads().size(); i++ ){
+                model.put("size",squadDao.allHeroesInASquad(i));
+            }
             model.put("heroes",heroDao.getAllHeroes());
             return new ModelAndView(model,"index.hbs");
         },new HandlebarsTemplateEngine());

@@ -37,6 +37,7 @@ class Sql2oHeroDaoTest {
     }
 
     @Test
+    @DisplayName("Hero Objects Have Id on Instantiation")
     void addHero_ObjectsAreAddedWithId() {
         Hero hero = setUpHero();
         int initialId = hero.getId();
@@ -46,7 +47,8 @@ class Sql2oHeroDaoTest {
     }
 
     @Test
-    void getAllHeroes_AllHeroObjectsAreAdded() throws Exception {
+    @DisplayName("All Heroes Are Added In A List")
+    public void getAllHeroes_AllHeroObjectsAreAdded() throws Exception {
         Hero hero1 = setUpHero();
         heroDao.addHero(hero1);
         Hero hero2 = new Hero(33,"VenomSnake","Tactics","CQC","Any Millitary Issue","Solid Snake",11);
@@ -55,6 +57,7 @@ class Sql2oHeroDaoTest {
     }
 
     @Test
+    @DisplayName("Heroes Are Found By Id")
     public void HeroesAreFoundById() throws Exception {
         Hero hero = new Hero(33,"VenomSnake","Tactics","CQC","Any Millitary Issue","Solid Snake",11);
         heroDao.addHero(hero);
@@ -63,6 +66,7 @@ class Sql2oHeroDaoTest {
     }
 
     @Test
+    @DisplayName("Heroes at a Given Id Are Updated")
     void updateHeroesOnAGivenId() throws Exception {
         Hero hero1 = setUpHero();
         String initialName = hero1.getName();
@@ -76,6 +80,7 @@ class Sql2oHeroDaoTest {
     }
 
     @Test
+    @DisplayName("Heroes at a given id are deleted")
     void deleteById() throws Exception {
         Hero hero1 = setUpHero();
         heroDao.addHero(hero1);
@@ -86,6 +91,7 @@ class Sql2oHeroDaoTest {
     }
 
     @Test
+    @DisplayName("All Heroes are deleted")
     void deleteAll() throws Exception {
         Hero hero1 = setUpHero();
         heroDao.addHero(hero1);

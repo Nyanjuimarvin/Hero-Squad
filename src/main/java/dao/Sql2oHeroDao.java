@@ -22,7 +22,6 @@ public class Sql2oHeroDao implements HeroDao{
 
         //open connection
         try( Connection conn = sql2o.open() ){
-
             //Get row key and assign to id
             int id = (int) conn.createQuery(sql,true)
                     .bind(hero)
