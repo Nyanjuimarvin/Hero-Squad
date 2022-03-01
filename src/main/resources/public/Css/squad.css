@@ -5,3 +5,18 @@
 .squaddisp{
     background-color:#F0FFF0;
 }
+.sqhead{
+    color:#243F4D;
+
+}
+
+.sqdetail{
+    font-size:30px;
+    font-weight:bolder;
+    color:#FDF5E6;
+}
+.sqherodetail{
+    font-size:30px;
+    font-weight:bolder;
+    color:#F0A800;
+}

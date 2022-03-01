@@ -1,28 +1,29 @@
 {{#partial "content"}}
     <div class="homebody row">
-    <h3 class="text-center fs-1 fw-bolder">Squads</h3>
+        <h3 class="text-center fs-1 fw-bolder">Squads</h3>
         {{#if squads}}
-        <div class="row row-cols-1 row-cols-md-3 p-5 mt-4 g-4">
-           {{#each squads}}
-               <div class="col">
-                   <div class="card h-100 squaddisp p-3">
-                       <div class="topsquad p-3">
-                           <img class="rounded-circle me-5" src="/images/squad.png" alt="">
-                           <span class="fw-bolder fs-1 ms-5">{{name}}</span>
-                       </div>
-                       <div class="d-flex justify-content-between">
-                       <a href="/squads/{{id}}"><button class="btn btn1">Details</button></a>
-                       <a href="/squads/{{id}}/update"><button class="btn btn2">Update</button></a>
-                       <a href="/squads/{{id}}/delete"><button class="btn btn-danger">delete</button></a>
-                       </div>
-                   </div>
-               </div>
-           {{/each}}
-        </div>
+            <div class="row row-cols-1 row-cols-md-3 p-5 mt-4 g-4">
+                {{#each squads}}
+                    <div class="col">
+                        <div class="card h-100 squaddisp p-3">
+                            <div class="topsquad p-3">
+                                <img class="rounded-circle me-5" src="/images/squad.png" alt="">
+                                <span class="fw-bolder fs-1 ms-5">{{name}}</span>
+                                <span class="fw-bolder text-end fs-1 ms-5">{{maxSize}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a href="/squads/{{id}}"><button class="btn btn1">Details</button></a>
+                                <a href="/squads/{{id}}/update"><button class="btn btn2">Update</button></a>
+                                <a href="/squads/{{id}}/delete"><button class="btn btn-danger">delete</button></a>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
             <a class="text-decoration-none" href="/squad/delete"><button class="btn btn-danger d-block mx-auto">Delete all</button></a>
 
         {{else}}
-               <p class="fs-3 fw-bolder">Nothing for now  <a class="text-decoration-none" href="/squad/new">Add a squad to continue</a></p>
+            <p class="fs-3 fw-bolder">Nothing for now  <a class="text-decoration-none" href="/squad/new">Add a squad to continue</a></p>
         {{/if}}
     </div>
 {{/partial}}
