@@ -5,12 +5,12 @@ plugins {
 
 group 'com.moringa.com'
 version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }
 
 mainClassName = 'App'
+applicationName = 'hero-bands'
 sourceCompatibility = 1.8
 
 dependencies {
@@ -28,3 +28,4 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+task stage(dependsOn: ['clean', 'installDist'])

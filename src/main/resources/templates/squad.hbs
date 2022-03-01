@@ -1,9 +1,9 @@
 {{#partial "content"}}
     <div class="row squadrow">
-        <h2 class="text-center mt-2 text-white fs-1 fw-bolder text-decoration-underline">{{squad.name}}</h2>
-        <h3>Squad Size : {{squad.maxSize}}</h3>
-        <h3>Squad Cause: {{squad.cause}}</h3>
-        <h3 class="ms-5 text-center fw-bolder text-decoration-underline">Heroes in this squad</h3>
+        <h1 class="text-center mt-2 sqhead fw-bolder text-decoration-underline">Squad {{squad.name}}</h1>
+        <h3 class="ms-4 sqdetail">Squad Size : <span class="text-dark">{{squad.maxSize}}</span></h3>
+        <h3 class="ms-4 sqdetail">Squad Cause: <span class="text-dark">{{squad.cause}}</span></h3>
+        <h3 class="sqherodetail text-center fw-bolder text-decoration-underline">Heroes in squad</h3>
         <div class="row row-cols-1 row-cols-md-3 p-5">
             {{#each heroes}}
                 <div class="col">
