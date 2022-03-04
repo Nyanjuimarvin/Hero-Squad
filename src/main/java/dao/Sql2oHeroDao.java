@@ -21,7 +21,7 @@ public class Sql2oHeroDao implements HeroDao{
                 "VALUES( :age,:name,:power,:move,:weapon,:weakness,:squadId)";
 
         //open connection
-        try( Connection conn = sql2o.open() ){
+        try( Connection conn = Db.sql2o.open() ){
             //Get row key and assign to id
             int id = (int) conn.createQuery(sql,true)
                     .bind(hero)
@@ -36,7 +36,7 @@ public class Sql2oHeroDao implements HeroDao{
     //List of all heroes
     @Override
     public List <Hero> getAllHeroes(){
-        try( Connection conn = sql2o.open() ){
+        try( Connection conn = Db.sql2o.open() ){
           return conn.createQuery("SELECT * FROM hero")
                   .throwOnMappingFailure(false)//Eliminate Mapping to property Error
                     .executeAndFetch(Hero.class);//Fetch Hero List
@@ -46,7 +46,7 @@ public class Sql2oHeroDao implements HeroDao{
     //Hero at specific id
     @Override
     public Hero findById(int id){
-        try( Connection conn = sql2o.open() ){
+        try( Connection conn = Db.sql2o.open() ){
             return conn.createQuery("SELECT * FROM hero WHERE id = :id")
                     .addParameter("id",id)
                     .throwOnMappingFailure(false)
@@ -59,7 +59,7 @@ public class Sql2oHeroDao implements HeroDao{
         String sql = "UPDATE hero SET ( age,name,power,move,weapon,weakness,squadid) = (:age,:name,:power,:move,:weapon,:weakness,:squadid) " +
                 "WHERE id = :id";
 
-        try( Connection conn = sql2o.open() ){
+        try( Connection conn = Db.sql2o.open() ){
             conn.createQuery(sql)
                     .addParameter("id",id)
                     .addParameter("age",age)
@@ -77,7 +77,7 @@ public class Sql2oHeroDao implements HeroDao{
 
     @Override
     public void deleteById(int id) {
-        try( Connection conn = sql2o.open() ){
+        try( Connection conn = Db.sql2o.open() ){
             conn.createQuery("DELETE FROM hero WHERE id = :id")
                     .addParameter("id",id)
                     .executeUpdate();
@@ -89,7 +89,7 @@ public class Sql2oHeroDao implements HeroDao{
     @Override
     public void deleteAll() {
 
-        try( Connection conn = sql2o.open() ){
+        try( Connection conn = Db.sql2o.open() ){
             conn.createQuery("DELETE FROM hero")
                     .executeUpdate();
         }catch(Sql2oException ex){
