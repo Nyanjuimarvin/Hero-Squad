@@ -38,6 +38,24 @@ Clone the repository using the following command:
 git clone https://github.com/Nyanjuimarvin/Hero-Squad.git
 ```
 
+###Recreate Database
+Run the following command to recreate the database on your local machine
+```
+psql < create.sql;
+```
+If the database seems to be populated, reset it using:
+```
+psql < drop.sql
+```
+and recreate it again.
+
+You may need to change the connection string in Db.java so that it matches your postgres username and password. If so, focus on the lines that match the following:
+```
+String username = (dbUri.getUserInfo() == null) ? <YOUR-DATABASE-USERNAME-HERE> : dbUri.getUserInfo().split(“:”)[0]; 
+String password = (dbUri.getUserInfo() == null) ? <YOUR-DATABASE-PASSWORD-HERE> : dbUri.getUserInfo().split(“:”)[1]; 
+```
+
+
 ### Run
 Open the project in Intellij Idea and refresh gradle to download dependencies.  
 After downloading dependencies, run
@@ -54,7 +72,7 @@ localhost:4567
 ```
 
 ## Live Link
-
+https://hero-bands.herokuapp.com/
 ## Contact
 For any issues, additional requests or compliments, reach out to me using:
 * E-mail - marnyanjui@gmail.com
