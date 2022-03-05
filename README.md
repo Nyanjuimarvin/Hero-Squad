@@ -11,8 +11,8 @@ THis is an application that implements the use of Postgresql with Java Database 
 
 
 ## Behavior Driven Development
-This application implements Create Read Update Delete ( CRUD ) operations in its entirety which rely on the basic database 
- 
+This application implements Create Read Update Delete ( CRUD ) operations in its entirety which rely on the basic database
+
 | Behavior                      | Input                                                                            | Expected Output                                                                                   |
 |-------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | Add squad(s)                  | A squad name,preferred squad size and squad cause                                | Squads are added to the squad table using INSERT and are retrieved using SELECT                   |
@@ -33,10 +33,28 @@ Each database operation method has been tested using Junit to make sure the corr
 
 ### Install
 
-Clone the repository using the following command:  
+Clone the repository using the following command:
 ```
 git clone https://github.com/Nyanjuimarvin/Hero-Squad.git
 ```
+
+###Recreate Database
+Run the following command to recreate the database on your local machine
+```
+psql < create.sql;
+```
+If the database seems to be populated, reset it using:
+```
+psql < drop.sql
+```
+and recreate it again.
+
+You may need to change the connection string in Db.java so that it matches your postgres username and password. If so, focus on the lines that match the following:
+```
+String username = (dbUri.getUserInfo() == null) ? <YOUR-DATABASE-USERNAME-HERE> : dbUri.getUserInfo().split(“:”)[0]; 
+String password = (dbUri.getUserInfo() == null) ? <YOUR-DATABASE-PASSWORD-HERE> : dbUri.getUserInfo().split(“:”)[1]; 
+```
+
 
 ### Run
 Open the project in Intellij Idea and refresh gradle to download dependencies.  
@@ -54,7 +72,7 @@ localhost:4567
 ```
 
 ## Live Link
-
+https://hero-bands.herokuapp.com/
 ## Contact
 For any issues, additional requests or compliments, reach out to me using:
 * E-mail - marnyanjui@gmail.com
