@@ -38,7 +38,7 @@ Clone the repository using the following command:
 git clone https://github.com/Nyanjuimarvin/Hero-Squad.git
 ```
 
-###Recreate Database
+### Recreate Database
 Run the following command to recreate the database on your local machine
 ```
 psql < create.sql;
